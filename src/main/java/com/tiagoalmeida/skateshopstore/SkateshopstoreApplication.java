@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.tiagoalmeida.skateshopstore.domain.Categoria;
 import com.tiagoalmeida.skateshopstore.domain.Cidade;
+import com.tiagoalmeida.skateshopstore.domain.Cliente;
+import com.tiagoalmeida.skateshopstore.domain.Endereco;
 import com.tiagoalmeida.skateshopstore.domain.Estado;
 import com.tiagoalmeida.skateshopstore.domain.Produto;
+import com.tiagoalmeida.skateshopstore.domain.enums.TipoCliente;
 import com.tiagoalmeida.skateshopstore.repository.CategoriaRepository;
 import com.tiagoalmeida.skateshopstore.repository.CidadeRepository;
+import com.tiagoalmeida.skateshopstore.repository.ClienteRepository;
+import com.tiagoalmeida.skateshopstore.repository.EnderecoRepository;
 import com.tiagoalmeida.skateshopstore.repository.EstadoRepository;
 import com.tiagoalmeida.skateshopstore.repository.ProdutoRepository;
 
@@ -34,6 +39,12 @@ public class SkateshopstoreApplication implements CommandLineRunner {
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -67,6 +78,18 @@ public class SkateshopstoreApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "02212356984", TipoCliente.PESSOAFISICA);
+		
+		cli1.getTelefones().addAll(Arrays.asList("33251648","98457693"));
+		
+		Endereco e1 = new Endereco(null, "rua flores", "154", "casa", "bom jesus", "91420590", cli1, c1);
+		Endereco e2 = new Endereco(null, "rua gata", "102", "casa", "boa vista", "4586232", cli1, c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
 	}
 
