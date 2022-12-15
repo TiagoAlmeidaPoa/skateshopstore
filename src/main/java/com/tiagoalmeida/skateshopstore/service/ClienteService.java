@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tiagoalmeida.skateshopstore.domain.Categoria;
 import com.tiagoalmeida.skateshopstore.domain.Cliente;
 import com.tiagoalmeida.skateshopstore.repository.ClienteRepository;
 import com.tiagoalmeida.skateshopstore.service.exceptions.ObjectNotFoundException;
