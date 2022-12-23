@@ -69,7 +69,14 @@ public class SkateshopstoreApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		Categoria cat1 = new Categoria(null, "calcado");
-		Categoria cat2 = new Categoria(null, "roupa");
+		Categoria cat2 = new Categoria(null, "camiseta");
+		Categoria cat3 = new Categoria(null, "acessorio");
+		Categoria cat4 = new Categoria(null, "skate");
+		Categoria cat5 = new Categoria(null, "peças");
+		Categoria cat6 = new Categoria(null, "bermuda");
+		Categoria cat7 = new Categoria(null, "bone");
+		
+		
 		
 		Produto p1 = new Produto(null, "nike sb", 150.00);
 		Produto p2 = new Produto(null, "bermuda primitive", 130.00);
@@ -82,7 +89,7 @@ public class SkateshopstoreApplication implements CommandLineRunner {
 		p2.getCategorias().addAll(Arrays.asList(cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat2));
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
