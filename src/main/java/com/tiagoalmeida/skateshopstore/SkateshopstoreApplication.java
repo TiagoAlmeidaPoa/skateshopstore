@@ -81,16 +81,37 @@ public class SkateshopstoreApplication implements CommandLineRunner {
 		Produto p1 = new Produto(null, "nike sb", 150.00);
 		Produto p2 = new Produto(null, "bermuda primitive", 130.00);
 		Produto p3 = new Produto(null, "camiseta Lakers", 70.00);
+		Produto p4 = new Produto(null, "chinelo havaianas", 50.00);
+		Produto p5 = new Produto(null, "camiseta nike sb", 100.00);
+		Produto p6 = new Produto(null, "tenis DC", 200.00);
+		Produto p7 = new Produto(null, "relogio adidas", 300.00);
+		Produto p8 = new Produto(null, "bone primitive", 100.00);
+		Produto p9 = new Produto(null, "rodas bones peralta", 350.00);
+		Produto p10 = new Produto(null, "skate dogtown Cruiser", 250.00);
+		Produto p11 = new Produto(null, "truck independente 149", 350.00);
 		
-		cat1.getProdutos().addAll(Arrays.asList(p1));
-		cat2.getProdutos().addAll(Arrays.asList(p2, p3));
+		cat1.getProdutos().addAll(Arrays.asList(p1,p4,p6));
+		cat2.getProdutos().addAll(Arrays.asList(p3,p5));
+		cat3.getProdutos().addAll(Arrays.asList(p7));
+		cat4.getProdutos().addAll(Arrays.asList(p10));
+		cat5.getProdutos().addAll(Arrays.asList(p9, p11));
+		cat6.getProdutos().addAll(Arrays.asList(p2));
+		cat7.getProdutos().addAll(Arrays.asList(p8));
 		
 		p1.getCategorias().addAll(Arrays.asList(cat1));
-		p2.getCategorias().addAll(Arrays.asList(cat2));
+		p2.getCategorias().addAll(Arrays.asList(cat6));
 		p3.getCategorias().addAll(Arrays.asList(cat2));
+		p4.getCategorias().addAll(Arrays.asList(cat1));
+		p5.getCategorias().addAll(Arrays.asList(cat2));
+		p6.getCategorias().addAll(Arrays.asList(cat1));
+		p7.getCategorias().addAll(Arrays.asList(cat3));
+		p8.getCategorias().addAll(Arrays.asList(cat7));
+		p9.getCategorias().addAll(Arrays.asList(cat5));
+		p10.getCategorias().addAll(Arrays.asList(cat4));
+		p11.getCategorias().addAll(Arrays.asList(cat5));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
-		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 		
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "Santa Catarina");
