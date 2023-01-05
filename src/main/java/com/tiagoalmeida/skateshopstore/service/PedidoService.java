@@ -14,7 +14,6 @@ import com.tiagoalmeida.skateshopstore.domain.enums.EstadoPagamento;
 import com.tiagoalmeida.skateshopstore.repository.ItemPedidoRepository;
 import com.tiagoalmeida.skateshopstore.repository.PagamentoRepository;
 import com.tiagoalmeida.skateshopstore.repository.PedidoRepository;
-import com.tiagoalmeida.skateshopstore.repository.ProdutoRepository;
 import com.tiagoalmeida.skateshopstore.service.exceptions.ObjectNotFoundException;
 
 @Service
@@ -30,7 +29,7 @@ public class PedidoService {
 	PagamentoRepository pagamentoRepository;
 	
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProdutoService produtoService;
 	
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
@@ -56,7 +55,7 @@ public class PedidoService {
 		pagamentoRepository.save(obj.getPagamento());
 		for ( ItemPedido ip : obj.getItens() ) {
 			ip.setDesconto(0.0);
-			ip.setPreco(produtoRepository.findById(ip.getProduto().getId()).get().getPrice());
+			ip.setPreco(produtoService.find(ip.getProduto().getId()).getPrice());
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
