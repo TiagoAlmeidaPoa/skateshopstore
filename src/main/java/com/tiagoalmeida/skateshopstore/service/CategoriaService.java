@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tiagoalmeida.skateshopstore.domain.Categoria;
 import com.tiagoalmeida.skateshopstore.dto.CategoriaDTO;
@@ -29,7 +30,8 @@ public class CategoriaService {
 				"Objeto não encontrado! Id:" + id + ", tipo: " + Categoria.class.getName()));
 
 	}
-
+	
+	@Transactional
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repository.save(obj);
