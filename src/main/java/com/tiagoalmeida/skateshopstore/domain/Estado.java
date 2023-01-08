@@ -20,7 +20,7 @@ public class Estado implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "estado")
 	private List<Cidade> cidade = new ArrayList<>();
