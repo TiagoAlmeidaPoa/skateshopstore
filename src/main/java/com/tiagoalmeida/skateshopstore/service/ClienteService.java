@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tiagoalmeida.skateshopstore.domain.Cidade;
 import com.tiagoalmeida.skateshopstore.domain.Cliente;
 import com.tiagoalmeida.skateshopstore.domain.Endereco;
+import com.tiagoalmeida.skateshopstore.domain.enums.Perfil;
 import com.tiagoalmeida.skateshopstore.domain.enums.TipoCliente;
 import com.tiagoalmeida.skateshopstore.dto.ClienteDTO;
 import com.tiagoalmeida.skateshopstore.dto.ClienteNewDTO;
 import com.tiagoalmeida.skateshopstore.repository.ClienteRepository;
 import com.tiagoalmeida.skateshopstore.repository.EnderecoRepository;
+import com.tiagoalmeida.skateshopstore.security.UserSS;
+import com.tiagoalmeida.skateshopstore.service.exceptions.AuthorizationException;
 import com.tiagoalmeida.skateshopstore.service.exceptions.DataIntegrityException;
 import com.tiagoalmeida.skateshopstore.service.exceptions.ObjectNotFoundException;
 
@@ -36,6 +39,12 @@ public class ClienteService {
 	private EnderecoRepository enderecoRepository;
 	
 	public Cliente find(Integer id) {
+		
+		UserSS user = UserService.authenticated();
+		if( user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId()) ) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
