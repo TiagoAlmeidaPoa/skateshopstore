@@ -46,7 +46,7 @@ public class ResourceExceptionHandler implements Serializable {
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
 	}
-	
+
 	@ExceptionHandler(AuthorizationException.class)
 	public ResponseEntity<StandardError> authorization(AuthorizationException e, HttpServletRequest request) {
 
